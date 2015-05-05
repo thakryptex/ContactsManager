@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
     ImageView contactImageImgView;
     List<Contact> Contacts = new ArrayList<>();
     ListView contactListView;
+    // TODO почему-то не ставит стандартную картинку
     Uri imageUri = Uri.parse("android.resource://ru.kryptex.contactmanager/drawable/user_no_image.png");
     DatabaseHandler dbHandler;
     int longClickedItemIndex;
@@ -112,6 +113,7 @@ public class MainActivity extends ActionBarActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
+                //TODO сделать, чтобы менялось именно при нажатии и выборе. Если cancel, то оставить default
                 startActivityForResult(intent.createChooser(intent, "Select Contact Image"), 1);
             }
         });
@@ -134,9 +136,10 @@ public class MainActivity extends ActionBarActivity {
     public boolean onContextItamSelected(MenuItem item) {
         switch (item.getItemId()) {
             case EDIT:
-                //TODO
+                //TODO сделать изменение. в отдельном активити по идее надо
                 break;
             case DELETE:
+                //TODO не работает удаление...по крайней мере, не исчезает из списка
                 dbHandler.deleteContact(Contacts.get(longClickedItemIndex));
                 Contacts.remove(longClickedItemIndex);
                 contactAdapter.notifyDataSetChanged();
@@ -157,6 +160,7 @@ public class MainActivity extends ActionBarActivity {
         return false;
     }
 
+    //TODO если к нему нигде не обращаются, то зачем он?
     public void onActivityResult(int reqCode, int resCode, Intent data) {
         if (resCode == RESULT_OK) {
             if (reqCode == 1) {
