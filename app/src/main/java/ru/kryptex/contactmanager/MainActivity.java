@@ -37,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
     DatabaseHandler dbHandler;
     int longClickedItemIndex;
     ArrayAdapter<Contact> contactAdapter;
+    // some changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
